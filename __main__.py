@@ -142,6 +142,10 @@ class IssueTodo(Frame):
             self.__issues.insert(END, '#%d - %s' % (issue.id, issue.description))
 
     def __put_namespace(self, ns):
+        if self.__storage.namespaceExists(ns):
+            messagebox.showerror("Error", "That namespace already exists!")
+            return
+        
         self.__storage.addNamespace(ns)
         nslist = self.__storage.namespaces
         names = []
@@ -159,6 +163,10 @@ class IssueTodo(Frame):
         self.__root.wait_window(nsdlg)
 
     def __put_issue(self, iss):
+        if self.__storage.getIssueById(self.__selected, iss.id) is not None:
+            messagebox.showerror("Error", "Issue #%d already exists." % iss.id)
+            return
+        
         self.__storage.addIssue(self.__selected, iss)
         issues = self.__storage.getIssues(self.__selected)
         self.__issues.insert(END, ('#%d - %s') % (iss.id, iss.description))

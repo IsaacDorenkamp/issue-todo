@@ -99,10 +99,22 @@ class Storage:
                 return i
         return None
 
+    def namespaceExists(self, ns):
+        for space in self.__ns:
+            if ns.url == space.url and ns.user == space.user and ns.repo == space.repo:
+                return True
+        return False
+
     def addIssue(self, nskey, iss):
         # TODO - assert that nskey represents a valid namespace?
         self.__data[nskey].append(iss)
         self.save()
+
+    def getIssueById(self, nskey, issId):
+        for iss in self.__data[nskey]:
+            if iss.id == issId:
+                return iss
+        return None
 
     def removeIssue(self, nskey, idx):
         del self.__data[nskey][idx]
