@@ -25,7 +25,6 @@ except ImportError:
 
 import os
 import sys
-import uuid
 import webbrowser
 
 from dialogs import NewNamespaceDialog, NewIssueDialog
