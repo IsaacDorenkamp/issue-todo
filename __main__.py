@@ -24,7 +24,6 @@ except ImportError:
     from tkinter import ttk
 
 import os
-import re
 import sys
 import uuid
 import webbrowser

@@ -6,6 +6,7 @@ except ImportError:
     from tkinter import messagebox
 
 from models import Namespace, Issue
+import re
 
 class NewNamespaceDialog(Toplevel):
     def __init__(self, parent, callback=None):
